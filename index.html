@@ -337,10 +337,10 @@
         title: 'Arduino Project',
         desc: 'A simple Arduino LED circuit built and simulated in Tinkercad.',
         tags: ['arduino'],
-        link: 'https://github.com/KaileyLiou/Applied-Engineering-AI-Future-Technologies/blob/main/arduino_project.md',
-        call: 'View Circuit',
-        link2: 'https://github.com/KaileyLiou/Applied-Engineering-AI-Future-Technologies/blob/main/arduino_project1.ino',
-        call2: 'View Code',
+        buttons: [
+          { link: 'https://github.com/KaileyLiou/Applied-Engineering-AI-Future-Technologies/blob/main/arduino_project.md', call: 'View Circuit' },
+          { link: 'https://github.com/KaileyLiou/Applied-Engineering-AI-Future-Technologies/blob/main/arduino_project1.ino', call: 'View Code' }
+        ],
         thumb: '🔌'
       }
       // {
@@ -399,6 +399,16 @@
       list.forEach(p => {
         const el = document.createElement('article');
         el.className = 'proj fade-in';
+
+        let buttonsHTML = '';
+        if(p.buttons){
+          buttonsHTML = p.buttons.map(b => 
+            `<a class="btn" href="${b.link}" target="_blank" rel="noopener">${b.call} →</a>`
+          ).join(' ');
+        } else if(p.link && p.call){
+          buttonsHTML = `<a class="btn" href="${p.link}" target="_blank" rel="noopener">${p.call} →</a>`;
+        }
+        
         el.innerHTML = `
           <div class="thumb" aria-hidden="true" style="font-size:40px">${p.thumb}</div>
           <div class="proj-body">
@@ -423,6 +433,7 @@
   </script>
 </body>
 </html>
+
 
 
 
